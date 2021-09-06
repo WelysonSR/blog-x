@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/connection");
+const categoriesController = require("./categories/CategoriesController");
+const articlesController = require("./articles/ArticlesController");
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
@@ -15,12 +17,14 @@ connection
         console.log(error);
     });
 
-//rotas gat
+/******************Routes******************/
 app.get("/",(req,res)=>{
     res.render("index");
 });
+app.use("/categorias", categoriesController);
+app.use("/articles", articlesController);
 
-//rotas post
+
 
 app.listen(8080, ()=>{
     console.log("O servidor está rodando!");

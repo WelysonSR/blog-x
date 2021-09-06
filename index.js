@@ -23,8 +23,8 @@ connection
 app.get("/",(req,res)=>{
     res.render("index");
 });
-app.use("/categorias", categoriesController);
-app.use("/articles", articlesController);
+app.use("/", categoriesController);
+app.use("/", articlesController);
 
 
 

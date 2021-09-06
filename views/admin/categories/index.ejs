@@ -22,12 +22,24 @@
                     <td><%= category.slug %></td>
                     <td>
                         <a href="#" class="btn btn-outline-warning">Editar</a>
-                        <a href="/categories/delete/<%= category.id %>" class="btn btn-outline-danger">Deletar</a>
+                        <form method="POST" action="/categories/delete/<%= category.id %>" style="display: inline;" onsubmit="confirmDeletion(event, this)">
+                            <button class="btn btn-outline-danger" >Deletar</button>
+                        </form>                        
                     </td>
                 </tr>
             <% }) %>            
         </tbody>        
     </table>
 </div>
+
+<script>    
+    function confirmDeletion(event, form){
+        event.preventDefault();
+        let decision = confirm("Deseja excluir a categoria?");
+        if(decision){
+            form.submit();
+        }    
+    }
+</script>
 
 <%- include ('../../partials/footer.ejs')%>

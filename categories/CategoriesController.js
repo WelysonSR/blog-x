@@ -14,10 +14,27 @@ router.get("/admin/categories/new", (req, res) =>{
     res.render("admin/categories/new");
 });
 
-router.get("/categories/delete/:id", (req, res) =>{
-    let id = req.params.id
-    //let id = req.body.id;
 
+//Routes POST
+router.post("/categories/save", (req, res) =>{
+    let title = req.body.title;
+    if(title != undefined && title != ''){
+
+        Category.create({
+            title: title,
+            slug: slugify(title)
+        }).then(()=>{
+            res.redirect("/admin/categories");
+        });
+
+    }else{
+        res.redirect("/admin/categories/new");
+    }
+});
+
+router.post("/categories/delete/:id", (req, res) =>{
+    let id = req.params.id
+    
     if(id != undefined && !isNaN(id)){
         Category.destroy({
             where:{
@@ -28,22 +45,6 @@ router.get("/categories/delete/:id", (req, res) =>{
         });
     }else{
         res.redirect("/admin/categories");
-    }
-});
-//Routes POST
-router.post("/categories/save", (req, res) =>{
-    let title = req.body.title;
-    if(title != undefined && title != ''){
-
-        Category.create({
-            title: title,
-            slug: slugify(title)
-        }).then(()=>{
-            res.redirect("/");
-        });
-
-    }else{
-        res.redirect("/admin/categories/new");
     }
 });
 

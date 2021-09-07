@@ -6,8 +6,8 @@ router.get("/articles", (req, res) =>{
     res.send("Rota de artigos");
 });
 
-router.get("/adm", (req, res) =>{
-    res.send("Rota adiministrativo");
+router.get("/admin/articles/new", (req, res) =>{
+    res.render("admin/articles/new");
 });
 
 //Routes POST

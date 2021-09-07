@@ -6,7 +6,11 @@ const slugify = require("slugify");
 
 //Routes GET
 router.get("/admin/articles", (req, res) =>{
-    res.send("Artigos");   
+    Article.findAll({
+        include: [{model: Category}]
+    }).then(articles => {
+        res.render("admin/articles/index", {articles: articles});
+    });       
 });
 
 router.get("/admin/articles/new", (req, res) =>{

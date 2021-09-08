@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+        <!--<img src="#" width="50px">-->
+        Blog-x
+    </a>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link btn btn-primary" href="/">Home</a>
+        </li>
+        <% categories.forEach(category =>{ %>
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" href="/category/<%= category.slug %>"><%= category.title %></a>
+            </li>
+            
+        <% }) %>        
+    </ul>
+</nav>

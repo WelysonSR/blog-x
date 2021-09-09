@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/connection");
+
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./user/UsersContoller");
+
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./user/User");
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
@@ -72,7 +76,7 @@ app.get("/category/:slug",(req, res)=>{
 });
 app.use("/", categoriesController);
 app.use("/", articlesController);
-
+app.use("/", usersController);
 
 
 app.listen(8080, ()=>{

@@ -14,6 +14,10 @@ router.get("/admin/users/create",(req,res)=>{
     res.render("admin/users/create");
 });
 
+router.get("/admin/users/login",(req,res)=>{
+    res.render("admin/users/login");
+});
+
 //Rotas Post
 router.post("/users/create", (req, res) => {
     let name = req.body.name;
@@ -39,5 +43,28 @@ router.post("/users/create", (req, res) => {
         }
     });
 });
+
+router.post("/admin/users/login",(req,res)=>{
+    let email = req.body.email;
+    let password = req.body.password;
+
+    User.findOne({where:{email: email}}).then(user =>{
+        if(user != undefined){
+            let correct = bcrypt.compareSync(password, user.password);
+            if(correct){
+                req.session.user = {
+                    id: user.id,
+                    email: user.email
+                }
+                res.json(req.session.user);
+            }else{
+                res.redirect("/admin/users/login");
+            }
+        }else{
+            res.redirect("/admin/users/login");
+        }
+    });
+});
+
 
 module.exports = router;

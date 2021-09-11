@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/connection");
+const session = require("express-session");
 
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
@@ -14,6 +15,9 @@ app.set('view engine','ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(session({
+    secret: "qwerty", cookie:{naxAge: 30000}
+}));
 
 connection
     .authenticate()

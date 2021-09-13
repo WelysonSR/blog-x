@@ -18,6 +18,11 @@ router.get("/admin/users/login",(req,res)=>{
     res.render("admin/users/login");
 });
 
+router.get("/admin/users/logout",(req,res)=>{
+    req.session.user = undefined;
+    res.redirect("/");
+});
+
 //Rotas Post
 router.post("/users/create", (req, res) => {
     let name = req.body.name;
@@ -56,7 +61,7 @@ router.post("/admin/users/login",(req,res)=>{
                     id: user.id,
                     email: user.email
                 }
-                res.json(req.session.user);
+                res.redirect("/admin/categories");
             }else{
                 res.redirect("/admin/users/login");
             }

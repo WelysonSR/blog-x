@@ -1,17 +1,33 @@
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">
         <!--<img src="#" width="50px">-->
         Blog-x
     </a>
-    <ul class="nav justify-content-end">
+    <ul class="nav ml-auto">
         <li class="nav-item">
             <a class="nav-link btn btn-primary" href="/">Home</a>
         </li>
-        <% categories.forEach(category =>{ %>
-            <li class="nav-item">
-                <a class="nav-link btn btn-primary" href="/category/<%= category.slug %>"><%= category.title %></a>
-            </li>
-            
-        <% }) %>        
+        <li class="nav-item dropdown">
+            <!-- Exemplo de único botão danger -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Artigos
+                </button>
+                <div class="dropdown-menu">
+                    <% categories.forEach(category=>{ %>
+                        <a class="nav-link" href="/category/<%= category.slug %>">
+                            <%= category.title %>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    <% }) %>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn " href=""></a>
+        </li><li class="nav-item">
+            <a class="nav-link btn " href=""></a>
+        </li>
     </ul>
 </nav>

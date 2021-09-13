@@ -36,7 +36,7 @@ router.get("/admin/articles/edit/:id?",adminAuth, (req, res) => {
     });
 });
 
-  router.get("/articles/page/:num", adminAuth,(req, res)=>{
+  router.get("/articles/page/:num",(req, res)=>{
     let page =req.params.num;
     let offset = 0;
 
